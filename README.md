@@ -1,6 +1,8 @@
 # UK Cabinet Office Spend Publishing
 
-This repository is a dataset for a [Spend Pulishing Dashboard](https://github.com/okfn/spend-publishing-dashboard).
+This repository is a dataset for a [Spend Publishing Dashboard](https://github.com/okfn/spend-publishing-dashboard).
+
+All data is in the `data/*` directory.
 
 The `publishers.csv` and `sources.csv` files have ben scraped from
 [data.gov.uk](http://data.gov.uk).
