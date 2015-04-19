@@ -78,7 +78,8 @@ spd-admin run spd-admin.json --encoding ISO-8859-2
 ```
 
 This will run a [Good Tables batch process](http://goodtables.readthedocs.org/en/latest/batch.html)
-on all the data sources.
+on all the data sources, with both `Pipeline` and `Batch` post handlers to collect and
+write the dashboard's run and result data.
 
 A new entry will be appended to the `results.csv` file for each data source
 that is processed, and a single new entry will be added to the `runs.csv`
