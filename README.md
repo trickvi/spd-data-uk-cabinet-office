@@ -4,10 +4,10 @@ This repository is a dataset for a [Spend Publishing Dashboard](https://github.c
 
 All data is in the `data/*` directory.
 
-The `publishers.csv` and `sources.csv` files have ben scraped from
+The data in `publishers.csv` and `sources.csv` comes from
 [data.gov.uk](http://data.gov.uk).
 
-Based on this scraped data, a set of statistics as to the quality of the published
+Based on this data, a set of statistics as to the quality of the published
 data has been collected using [SPD Admin](https://github.com/okfn/spd-admin), and
 is written to the `results.csv` and `runs.csv` files.
 
