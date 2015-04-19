@@ -61,7 +61,7 @@ A typical config file looks like this:
 }
 ```
 
-Note that `data_dir` is a path relative to the path of the config file.
+Note that `data_dir` is either an absolute path, or a path **relative to the path of the config file**.
 
 #### Running with SPD Admin
 
