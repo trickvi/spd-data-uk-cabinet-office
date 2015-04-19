@@ -56,7 +56,7 @@ and deploying the data to a remote.
 A typical config file looks like this:
 
 ```
-# spd-admin.config
+# spd-admin.json
 {
     "data_dir": "data",
     "result_file": "results.csv",
