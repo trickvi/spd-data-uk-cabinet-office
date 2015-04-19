@@ -31,7 +31,15 @@ spd-admin --help
 
 ### Collecting publisher data
 
-How we scrape publishers and their data sources.
+There is a very simple script now that gets a set of Cabinet House data sources
+from [this data.gov.uk API response](http://data.gov.uk/api/2/rest/package/financial-transactions-data-co).
+
+```
+python scripts/get_sources.py
+```
+
+This populates `sources.csv`. `publishers.csv` was manually created
+as it only has a single publisher.
 
 ### Collecting quality results
 
@@ -66,7 +74,7 @@ Note that `data_dir` is either an absolute path, or a path **relative to the pat
 #### Running with SPD Admin
 
 ```
-spd-admin run spd-admin.json
+spd-admin run spd-admin.json --encoding ISO-8859-2
 ```
 
 This will run a [Good Tables batch process](http://goodtables.readthedocs.org/en/latest/batch.html)
@@ -75,6 +83,13 @@ on all the data sources.
 A new entry will be appended to the `results.csv` file for each data source
 that is processed, and a single new entry will be added to the `runs.csv`
 file to identify this run.
+
+**Important**: *the encoding argument.*
+
+Good Tables can automatically detect encoding, but it can also be wrong.
+This allows you to explicitly pass in an encoding to be used to read the
+data source stream. In the case of Cabinet Office data, auto-detection
+**will** fail, so be sure to explicitly pass "ISO-8859-2" as the encoding.
 
 #### Deploying with SPD Admin
 
