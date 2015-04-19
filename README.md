@@ -66,7 +66,7 @@ Note that `data_dir` is either an absolute path, or a path **relative to the pat
 #### Running with SPD Admin
 
 ```
-spd-admin run /path/to/config.json
+spd-admin run spd-admin.json
 ```
 
 This will run a [Good Tables batch process](http://goodtables.readthedocs.org/en/latest/batch.html)
@@ -79,10 +79,10 @@ file to identify this run.
 #### Deploying with SPD Admin
 
 ```
-spd-admin deploy /path/to/config.json
+spd-admin deploy spd-admin.json
 ```
 
 This will commit the current state of the data, and push it to the remote repository.
 
 It is possible to run the `deploy` task with the `run` task with
-`spd-admin run /path/to/config.json --deploy`. 
+`spd-admin run spd-admin.json --deploy`. 
