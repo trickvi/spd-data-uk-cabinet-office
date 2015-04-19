@@ -8,13 +8,13 @@ The `publishers.csv` and `sources.csv` files have ben scraped from
 [data.gov.uk](http://data.gov.uk).
 
 Based on this scraped data, a set of statistics as to the quality of the published
-data has collected using the [SPD Admin](https://github.com/okfn/spd-admin) tool:
-this statistical data is written to the `results.csv` and `runs.csv` files.
+data has been collected using [SPD Admin](https://github.com/okfn/spd-admin), and
+is written to the `results.csv` and `runs.csv` files.
 
 ## Installation
 
 The tooling for managing the data is written in Python. It is recommended to create a
-Py2 or Py3 virtual environment (support ranges from Python 2.7 > 3.4), and the install
+Py2 or Py3 virtual environment (support ranges from Python 2.7 > 3.4), and to install
 the required dependencies as follows:
 
 ```
@@ -61,6 +61,8 @@ A typical config file looks like this:
 }
 ```
 
+Note that `data_dir` is a path relative to the path of the config file.
+
 #### Running with SPD Admin
 
 ```
@@ -70,6 +72,10 @@ spd-admin /path/to/config.json run
 This will run a [Good Tables batch process](http://goodtables.readthedocs.org/en/latest/batch.html)
 on all the data sources.
 
+A new entry will be appended to the `results.csv` file for each data source
+that is processed, and a single new entry will be added to the `runs.csv`
+file to identify this run.
+
 #### Deploying with SPD Admin
 
 ```
@@ -78,5 +84,5 @@ spd-admin /path/to/config.json deploy
 
 This will commit the current state of the data, and push it to the remote repository.
 
-It is possibel to run the `deploy` task with the `run` task with
+It is possible to run the `deploy` task with the `run` task with
 `spd-admin /path/to/config.json run --deploy`. 
