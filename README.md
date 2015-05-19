@@ -27,19 +27,87 @@ The installation will add the `spd-admin` tool to your PATH. Check that with:
 spd-admin --help
 ```
 
+## Data model
+
+In order for a Spend Publishing Dashboard to use the data in `data/*`, it needs to
+conform to an expected data model. That data model is as follows.
+
+### instance.json
+
+A configuration file for the setup of the dashboard itself. Each property in the example
+`data/instance.json` is required in order for a dashboard to run.
+
+#### Properties
+
+* `name`: (string) The name of the dashboard
+* `admin`: (string) The email of the administrator of the dashboard
+* `validator_url`: (string) The URL to a Good Tables endpoint to validate the data
+
+### publishers.csv
+
+A list of publishers for this instance.
+
+#### Properties
+
+* `id`
+* `title`
+* `type`
+* `homepage`
+* `contact`
+* `email`
+* `parent_id`
+
+### sources.csv
+
+A list of data sources for this instance, where each data source belongs to a
+publisher in `publishers.csv`.
+
+* `id`
+* `publisher_id`
+* `title`
+* `data`
+* `format`
+* `last_modified`
+* `period_id`
+* `schema`
+
+### results.csv
+
+The list of all results for this instance. Results are generated for every **run**,
+and over time there will be multiple runs.
+
+* `id`
+* `source_id`
+* `publisher_id`
+* `period_id`
+* `score`
+* `data`
+* `schema`
+* `summary`
+* `run_id`
+* `timestamp`
+* `report`
+
+### runs.csv
+
+The list of all runs done for this instance (a "run" is an `spd-admin run` task, which is how results are collected).
+
+* `id`
+* `timestamp`
+* `total_score`
+
 ## Working with the data
 
 ### Collecting publisher data
 
-There is a very simple script now that gets a set of Cabinet House data sources
-from [this data.gov.uk API response](http://data.gov.uk/api/2/rest/package/financial-transactions-data-co).
+There is a script now that gets all public spending data from [data.gov.uk](http://data.gov.uk/).
 
 ```
-python scripts/get_sources.py
+python scripts/get_data.py
 ```
 
-This populates `sources.csv`. `publishers.csv` was manually created
-as it only has a single publisher.
+This will populate `publishers.csv` and  `sources.csv`.
+`publishers.csv` and  `sources.csv` currently contain only the Cabinet Office and the Department for Business, Innovation and Skills data.
 
 ### Collecting quality results
 
@@ -57,6 +125,7 @@ A typical config file looks like this:
 
 ```
 # spd-admin.json
+
 {
     "data_dir": "data",
     "result_file": "results.csv",
@@ -101,4 +170,6 @@ spd-admin deploy spd-admin.json
 This will commit the current state of the data, and push it to the remote repository.
 
 It is possible to run the `deploy` task with the `run` task with
+
 `spd-admin run spd-admin.json --deploy`. 
+
